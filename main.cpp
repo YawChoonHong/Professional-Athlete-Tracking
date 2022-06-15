@@ -4,12 +4,12 @@ using namespace std;
 
 class Sports
 {
-    protected:
+    private:
         string sportName, sportType;
         string IndoorOutDoor, teamName;
     
     public:
-        Sports(string teamname ="",string name ="", string type ="", string io = "") : teamName(teamname),sportName(name), sportType(type), IndoorOutDoor(io){}
+        Sports(string name ="", string type ="", string io = "") : sportName(name), sportType(type), IndoorOutDoor(io){}
 
         void inOut(char in_out){
             IndoorOutDoor = in_out;
@@ -42,7 +42,7 @@ class Single: public Sports
     
     public:
         Single(){}
-        Single(string sName , string sType, string io): Sports("", sName, sType, io){
+        Single(string sName , string sType, string io): Sports(sName, sType, io){
             numPlayer = 1;
         }
         void setnumPlayer(int n){
@@ -63,7 +63,7 @@ class Team: public Sports
         string teamName;
         
     public:
-        Team(string TName = "", string sName = "", string sType = "", string io = "", int num = 2): Sports(TName, sName, sType, io), numPlayer(num), teamName(TName){}
+        Team(string TName = "", string sName = "", string sType = "", string io = "", int num = 0): Sports(TName, sName, sType, io), numPlayer(num), teamName(TName){}
         void setnumPlayer(int numP){
             numPlayer = numP;
         }
@@ -210,36 +210,36 @@ int sportMenu()
 
 int main()
 {
-    
     Single b1("Badminton", "Anarobics", "Indoor");
     Single t1("Table Tennis", "Anarobics", "Indoor");
     Single w("Weightlifting", "Aerobics", "Indoor");
     Single T1("Tennis", "Anarobics", "Outdoor");
 
-    Team b2("", "Badminton", "Anarobics", "Indoor");
-    Team t2("","Table Tennis", "Anarobics", "Indoor");
-    Team T2("","Tennis", "Anarobics", "Outdoor");
-    Team f("","Football", "Anarobics", "Outdoor");
+    Team b2("", "Badminton", "Anarobics", "Indoor",2);
+    Team t2("","Table Tennis", "Anarobics", "Indoor",2);
+    Team T2("","Tennis", "Anarobics", "Outdoor",2);
+    Team f("","Football", "Anarobics", "Outdoor",2);
     
-    // Sports *S[] = {&b1, &t1, &T1, &w};
-    // Sports *S1[] = {&b2, &t2, &T2, &f};
-    // int sportChoice;
-    // int numPlayer;
-    // string tName;
-    // sportChoice = sportMenu();
-    // do{
-    //     cout << "Enter the number of Player for the sport: ";
-    //     cin >> numPlayer;
-    //     if(numPlayer == 1){
-    //         S[sportChoice - 1]->print();        
-    //     }
+    Sports *S[] = {&b1, &t1, &T1, &w};
+    Sports *S1[] = {&b2, &t2, &T2, &f};
+    int sportChoice;
+    int numPlayer;
+    string tName;
+    sportChoice = sportMenu();
+    do{
+        cout << "Enter the number of Player for the sport: ";
+        cin >> numPlayer;
+        if(numPlayer == 1){
+            S[sportChoice - 1]->print();        
+        }
 
-    //     if(numPlayer > 1){
-    //         cout << "Enter the team Name: ";
-    //         getline(cin,tName);
-    //         S1[sportChoice - 1]->print();
-    //     }
-    // }while(numPlayer > 0 );
+        if(numPlayer > 1){
+            cout << "Enter the team Name: ";
+            getline(cin,tName);
+            S1[sportChoice -1 ]->teamName();
+            S1[sportChoice - 1]->print();
+        }
+    }while(numPlayer > 0 );
 
 
     system("pause");

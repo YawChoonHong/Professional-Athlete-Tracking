@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 
@@ -212,7 +213,7 @@ class Athlete{
 };
 
 
-int sportMenu()
+int sportMenu(ifstream &inputData)
 {
     int choice;
     cout << "[1]. Badminton\n"
@@ -222,6 +223,10 @@ int sportMenu()
     << "[5]. Football\n" << endl; 
     cout << "\nSelect an option: ";
     cin >> choice;
+    if(choice ==1 ){
+        inputData.open("dataSingleBad.txt");
+    }
+
     return choice;
 }
 
@@ -229,6 +234,13 @@ int sportMenu()
 
 int main()
 {
+    ifstream textfile;
+    int a,h;
+    string place, first,last,sur,nick;
+    char gen;
+    double pt;
+
+
     Single b1("Badminton", "Anarobics", "Indoor");
     Single t1("Table Tennis", "Anarobics", "Indoor");
     Single w("Weightlifting", "Aerobics", "Indoor");
@@ -248,8 +260,15 @@ int main()
     int numPlayer;
     string tName;
 
+    //Athlete ath[numPlayer];
+
     do{
-        sportChoice = sportMenu();
+        sportChoice = sportMenu(textfile);
+        if (!textfile){
+        cout << "Failed" << endl;
+        system("pause");
+        exit(0);
+        }
         cout << "Enter the number of Player for the sport: ";
         cin >> numPlayer;
         if(numPlayer == 1){
@@ -265,9 +284,13 @@ int main()
         }
     }while(numPlayer < 0 );
 
+    Athlete ath[numPlayer];
 
-    Athlete ath[numPlayer] = {Athlete(25, 175, "Ipoh", 'f', 200.5, "Tan","Lin","Alice", "PlayerX")};   
-
+    for (int i=0; i< numPlayer; i++){
+        textfile >> a >> h >> place >> gen>> pt >> first >> last >> sur >> nick;
+        ath[i] = {Athlete(a, h, place, gen, pt, first,last,sur, nick)};
+        textfile.ignore();
+    }
 
 
     for(int i=0; i<numPlayer; i++)

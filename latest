@@ -211,7 +211,7 @@ class Team: public Sports{
 
 
 
-int sportMenu(ifstream &inputData){
+int sportMenu(){
     int choice;
     cout << "[1]. Badminton\n"
     << "[2]. Table Tennis\n"
@@ -229,10 +229,6 @@ int sportMenu(ifstream &inputData){
             cout << n << " is an invalid input." << endl;
         }
     }while(choice < 1 || choice > 4);
-
-    if(choice == 1){
-        inputData.open("dataSingleBad.txt");
-    }
     return choice;
 }
 
@@ -264,18 +260,27 @@ int main(){
     int sportChoice;
     int numPlayer;
     string tName;
+    int TeamNumber;
 
+    string teamChoice[2] = {"Team A", "Team B"};
 
     do{
-        sportChoice = sportMenu(textfile);
+        sportChoice = sportMenu();
         if(sportChoice == 4){
             numPlayer = 11;
-            int TeamNumber;
-            string teamChoice[2] = {"Team A", "Team B"};
             cout << "[1] Team A\n"
                  << "[2] Team B\n";
             cout << "Choose a team: ";
             cin >> TeamNumber;
+            if(TeamNumber == 1){
+                textfile.open("Barcelona.txt");
+                textfile2.open("Barcelona-Equip.txt");
+            }
+            else{
+                textfile.open("RealMadrid.txt");
+                textfile2.open("RealMadrid-Equip.txt");
+            }
+            
             tName = teamChoice[TeamNumber-1];
             S1[3]->setTeamName(tName);
             S1[3]->setNumPlayers(numPlayer);
@@ -285,11 +290,56 @@ int main(){
             cout << "Enter the number of Player for the sport: ";
             cin >> numPlayer;
             if(numPlayer == 1){
+                if (sportChoice == 1){
+                    textfile.open("SingleBadmintonAthlete.txt");
+                    textfile2.open("SingleBadmintonAthleteEquipment.txt");
+                }
+                else if (sportChoice == 2){
+                    textfile.open("SingleTableTennis.txt");
+                    textfile2.open("SingleTableTennisEquip.txt");
+                }
+                else if (sportChoice == 3){
+                    textfile.open("SingleTennis.txt");
+                    textfile2.open("SingleTennisEquip.txt");
+                }
                 S[sportChoice - 1]->print();        
             }
 
             else{
-                S1[sportChoice - 1]->print();
+                cout << "[1] Team A\n"
+                     << "[2] Team B\n";
+                cout << "Choose a team: ";
+                cin >> TeamNumber;
+                if(TeamNumber == 1){
+                    if (sportChoice == 1){
+                        textfile.open("TeamA-Badminton-Athletes.txt");
+                        textfile2.open("TeamA-Badminton-Equipments.txt");
+                    }
+                    else if (sportChoice == 2){
+                        textfile.open("TeamA-TableTennis.txt");
+                        textfile2.open("TeamA-TableTennisEquip.txt");
+                    }
+                    else if (sportChoice == 3){
+                        textfile.open("TeamA-Tennis.txt");
+                        textfile2.open("TeamA-TennisEquip.txt");
+                    }
+                }
+                else{
+                    if (sportChoice == 1){
+                        textfile.open("TeamB-Badminton-Athletes.txt");
+                        textfile2.open("TeamB-Badminton-Equipments.txt");
+                    }
+                    else if (sportChoice == 2){
+                        textfile.open("TeamB-TableTennis.txt");
+                        textfile2.open("TeamB-TableTennisEquip.txt");
+                    }
+                    else if (sportChoice == 3){
+                        textfile.open("TeamB-Tennis.txt");
+                        textfile2.open("TeamB-TennisEquip.txt");
+                    }
+                }
+                tName = teamChoice[TeamNumber-1];
+                S1[sportChoice - 1]->setTeamName(tName);
                 S1[sportChoice - 1]->setNumPlayers(numPlayer);
                 S1[sportChoice - 1]->print(); 
             }
@@ -306,7 +356,6 @@ int main(){
     }
 
     PreferredEquipment eq[numPlayer];
-    textfile2.open("Data2.txt");
     for (int i=0; i< numPlayer; i++){
         textfile2 >> manu >> mod >> pri >> rat;
         eq[i] = PreferredEquipment(manu, mod, pri, rat);

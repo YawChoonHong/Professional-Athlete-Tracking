@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
 class Name{
@@ -59,6 +60,7 @@ class PreferredEquipment{
             return rating;
         }
 };
+
 class Athlete{
     private:
         int age, height;
@@ -117,21 +119,21 @@ class Athlete{
             }
         }
         void print(){
-            cout << "\n=========Athlete Information=========" << endl;
-            cout << "Age: " << getAge()
-                << "\nGender: " << getGender()
-                << "\nHeight: " << getHeight()
-                << "\nBirthPlace: " << getbPlace()
-                << "\nAccumulative Points: " << getAcPoint()
-                << "\nFirst Name: " << athleteName.getFirstName()
-                << "\nLast Name: " << athleteName.getLastName()
-                << "\nSurname: " << athleteName.getSurName()
-                << "\nNickname: " << athleteName.getNickName() << endl;
-            cout << "\n=========Preferred Equipment========="
-                << "\nBrand:" << getEquipmentManufacturer()
-                << "\nModel: " <<getEquipmentModel()
-                << "\nPrice: " << getEquipmentPrice()
-                << "\nRating: " << getEquipmentRating() << endl;
+            cout << "Age                     : " << getAge()
+                << "\nGender[M-Male, F-Female]: " << getGender()
+                << "\nHeight                  : " << getHeight()
+                << "\nBirthPlace              : " << getbPlace()
+                << "\nAccumulative Points     : " << getAcPoint()
+                << "\nFirst Name              : " << athleteName.getFirstName()
+                << "\nLast Name               : " << athleteName.getLastName()
+                << "\nSurname                 : " << athleteName.getSurName()
+                << "\nNickname                : " << athleteName.getNickName() << endl;
+            cout << fixed << setprecision(2);
+            cout << "\n******************Preferred Equipment**********************************"
+                << "\nBrand                   : " << getEquipmentManufacturer()
+                << "\nModel                   : " <<getEquipmentModel()
+                << "\nPrice[RM]               : " << getEquipmentPrice()
+                << "\nRating[0-5]             : " << getEquipmentRating() << endl;
         }
 };
 
@@ -184,10 +186,11 @@ class Single: public Sports{
     public:
         Single(string sName, string sType, string io): Sports(sName, sType, io, 1){}
         void print(){
-            cout << "Sport Name:" << getSName() << endl;
-            cout << "Type of Sport: " << getSType() << endl;
-            cout << "Indoor(I) or Outdoor(O) Sport: " << getinOut() << endl;
-            cout << "Number of Player(s): " << getNumPlayers() << endl;
+            cout << "\n\n##################Selected Sport#######################################";
+            cout << "\nSport Name              : " << getSName() << endl;
+            cout << "Type of Sport           : " << getSType() << endl;
+            cout << "Indoor or Outdoor Sport : " << getinOut() << endl;
+            cout << "Number of Player(s)     : " << getNumPlayers() << endl;
         }
 };
 
@@ -200,16 +203,16 @@ class Team: public Sports{
         void setTeamName(string nameTeam){
             teamname = nameTeam;
         }
+
         void print(){
-            cout << "Sport Name:" << getSName() << endl;
-            cout << "Type of Sport: " << getSType() << endl;
-            cout << "Indoor(I) or Outdoor(O) Sport: " << getinOut() << endl;
-            cout << "Number of Player(s): " << getNumPlayers() << endl;
-            cout << "Team's Name: " << getTeamName() << endl;
+            cout << "\n\n##################Selected Sport#######################################";
+            cout << "\nSport Name              : " << getSName() << endl;
+            cout << "Type of Sport           : " << getSType() << endl;
+            cout << "Indoor or Outdoor Sport : " << getinOut() << endl;
+            cout << "Number of Player(s)     : " << getNumPlayers() << endl;
+            cout << "Team's Name             : " << getTeamName() << endl;
         }
 };
-
-
 
 int sportMenu(){
     int choice;
@@ -261,118 +264,147 @@ int main(){
     int numPlayer;
     string tName;
     int TeamNumber;
+    char decision;
+    char program_decision;
 
     string teamChoice[2] = {"Team A", "Team B"};
 
+    cout << setw(85) << "Welcome to Professional Athletes Tracking System\n\n" << endl;
+    cout << "Developed by: Section 4 (Group9)" << endl;
+    cout << "Developers  : 1) LOH WEI HUAN (A21EC0048)"
+        << "\n\t      2) RASIDIN BIN HATTA (A21EC0126)"
+        << "\n\t      3) YAW CHOON HONG (A21EC0240)" << endl << endl;
+    
     do{
-        sportChoice = sportMenu();
-        if(sportChoice == 4){
-            numPlayer = 11;
-            cout << "[1] Team A\n"
-                 << "[2] Team B\n";
-            cout << "Choose a team: ";
-            cin >> TeamNumber;
-            if(TeamNumber == 1){
-                textfile.open("Barcelona.txt");
-                textfile2.open("Barcelona-Equip.txt");
-            }
-            else{
-                textfile.open("RealMadrid.txt");
-                textfile2.open("RealMadrid-Equip.txt");
-            }
-            
-            tName = teamChoice[TeamNumber-1];
-            S1[3]->setTeamName(tName);
-            S1[3]->setNumPlayers(numPlayer);
-            S1[3]->print();
-        }
-        else{
-            cout << "Enter the number of Player for the sport: ";
-            cin >> numPlayer;
-            if(numPlayer == 1){
-                if (sportChoice == 1){
-                    textfile.open("SingleBadmintonAthlete.txt");
-                    textfile2.open("SingleBadmintonAthleteEquipment.txt");
-                }
-                else if (sportChoice == 2){
-                    textfile.open("SingleTableTennis.txt");
-                    textfile2.open("SingleTableTennisEquip.txt");
-                }
-                else if (sportChoice == 3){
-                    textfile.open("SingleTennis.txt");
-                    textfile2.open("SingleTennisEquip.txt");
-                }
-                S[sportChoice - 1]->print();        
-            }
-
-            else{
+        do{
+            sportChoice = sportMenu();
+            if(sportChoice == 4){
+                numPlayer = 11;
                 cout << "[1] Team A\n"
-                     << "[2] Team B\n";
+                    << "[2] Team B\n";
                 cout << "Choose a team: ";
                 cin >> TeamNumber;
                 if(TeamNumber == 1){
-                    if (sportChoice == 1){
-                        textfile.open("TeamA-Badminton-Athletes.txt");
-                        textfile2.open("TeamA-Badminton-Equipments.txt");
-                    }
-                    else if (sportChoice == 2){
-                        textfile.open("TeamA-TableTennis.txt");
-                        textfile2.open("TeamA-TableTennisEquip.txt");
-                    }
-                    else if (sportChoice == 3){
-                        textfile.open("TeamA-Tennis.txt");
-                        textfile2.open("TeamA-TennisEquip.txt");
-                    }
+                    
+                    textfile.open("Barcelona.txt");
+                    textfile2.open("Barcelona-Equip.txt");
                 }
                 else{
+                    textfile.open("RealMadrid.txt");
+                    textfile2.open("RealMadrid-Equip.txt");
+                }
+                
+                tName = teamChoice[TeamNumber-1];
+                S1[3]->setTeamName(tName);
+                S1[3]->setNumPlayers(numPlayer);
+                S1[3]->print();
+            }
+            else{
+                do
+                {
+                    cout << "Enter [S/s] for Single or [T/t] for Team: ";
+                    cin >> decision;
+                    if (decision == 'S' || decision == 's')
+                        numPlayer = 1;
+                    else{
+                        numPlayer = 2;
+                    }
+                }while(!(decision == 'S' || decision  == 's' || decision == 'T' || decision == 't'));
+
+                if(numPlayer == 1){
                     if (sportChoice == 1){
-                        textfile.open("TeamB-Badminton-Athletes.txt");
-                        textfile2.open("TeamB-Badminton-Equipments.txt");
+                        textfile.open("SingleBadmintonAthlete.txt");
+                        textfile2.open("SingleBadmintonAthleteEquipment.txt");
                     }
                     else if (sportChoice == 2){
-                        textfile.open("TeamB-TableTennis.txt");
-                        textfile2.open("TeamB-TableTennisEquip.txt");
+                        textfile.open("SingleTableTennis.txt");
+                        textfile2.open("SingleTableTennisEquip.txt");
                     }
                     else if (sportChoice == 3){
-                        textfile.open("TeamB-Tennis.txt");
-                        textfile2.open("TeamB-TennisEquip.txt");
+                        textfile.open("SingleTennis.txt");
+                        textfile2.open("SingleTennisEquip.txt");
                     }
+                    S[sportChoice - 1]->print();        
                 }
-                tName = teamChoice[TeamNumber-1];
-                S1[sportChoice - 1]->setTeamName(tName);
-                S1[sportChoice - 1]->setNumPlayers(numPlayer);
-                S1[sportChoice - 1]->print(); 
+
+                else{
+                    cout << "[1] Team A\n"
+                        << "[2] Team B\n";
+                    cout << "Choose a team: ";
+                    cin >> TeamNumber;
+                    if(TeamNumber == 1){
+                        if (sportChoice == 1){
+                            textfile.open("TeamA-Badminton-Athletes.txt");
+                            textfile2.open("TeamA-Badminton-Equipments.txt");
+                        }
+                        else if (sportChoice == 2){
+                            textfile.open("TeamA-TableTennis.txt");
+                            textfile2.open("TeamA-TableTennisEquip.txt");
+                        }
+                        else if (sportChoice == 3){
+                            textfile.open("TeamA-Tennis.txt");
+                            textfile2.open("TeamA-TennisEquip.txt");
+                        }
+                    }
+                    else{
+                        if (sportChoice == 1){
+                            textfile.open("TeamB-Badminton-Athletes.txt");
+                            textfile2.open("TeamB-Badminton-Equipments.txt");
+                        }
+                        else if (sportChoice == 2){
+                            textfile.open("TeamB-TableTennis.txt");
+                            textfile2.open("TeamB-TableTennisEquip.txt");
+                        }
+                        else if (sportChoice == 3){
+                            textfile.open("TeamB-Tennis.txt");
+                            textfile2.open("TeamB-TennisEquip.txt");
+                        }
+                    }
+                    tName = teamChoice[TeamNumber-1];
+                    S1[sportChoice - 1]->setTeamName(tName);
+                    S1[sportChoice - 1]->setNumPlayers(numPlayer);
+                    S1[sportChoice - 1]->print(); 
+                }
+            }
+
+        }while(numPlayer < 0 );
+
+        Athlete ath[numPlayer];
+
+        for (int i=0; i< numPlayer; i++){
+            textfile >> a >> h >> place >> gen>> pt >> first >> last >> sur >> nick;
+            ath[i] = Athlete(a, h, place, gen, pt, first,last,sur, nick);
+            textfile.ignore();
+        }
+
+        PreferredEquipment eq[numPlayer];
+        for (int i=0; i< numPlayer; i++){
+            textfile2 >> manu >> mod >> pri >> rat;
+            eq[i] = PreferredEquipment(manu, mod, pri, rat);
+            ath[i].equipment(&eq[i]);
+            textfile.ignore();
+        }
+
+
+        for(int i=0; i<numPlayer; i++){
+            if (numPlayer == 1){
+                cout << "\n==================Athlete Information==================================" << endl;
+                ath[i].print();
+            }
+            else{
+                cout << "\n==================Athlete #"<< (i+1) << " Information==============================" << endl;
+                ath[i].print();
             }
         }
 
-    }while(numPlayer < 0 );
+        cout << "\nDo you wish to search for other sport? [Y/N]: ";
+        cin >>program_decision;
+        cout << endl << endl;
+    }while(program_decision == 'Y' || program_decision == 'y');
 
-    Athlete ath[numPlayer];
-
-    for (int i=0; i< numPlayer; i++){
-        textfile >> a >> h >> place >> gen>> pt >> first >> last >> sur >> nick;
-        ath[i] = Athlete(a, h, place, gen, pt, first,last,sur, nick);
-        textfile.ignore();
-    }
-
-    PreferredEquipment eq[numPlayer];
-    for (int i=0; i< numPlayer; i++){
-        textfile2 >> manu >> mod >> pri >> rat;
-        eq[i] = PreferredEquipment(manu, mod, pri, rat);
-        ath[i].equipment(&eq[i]);
-        textfile.ignore();
-    }
-
-
-    for(int i=0; i<numPlayer; i++){
-        //ath[i].equipment(&eq);
-        ath[i].print();
-    }
-    
-    
-
-
-
+    cout << "\n######################################################################################################################" << endl;
+    cout << setw(75) << "Thank you for using our system!" << endl;
+    cout << "######################################################################################################################" << endl;
     system("pause");
     return 0;
 }

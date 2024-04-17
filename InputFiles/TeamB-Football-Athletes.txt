@@ -1,0 +1,11 @@
+34	185	France    M	  250.6   Karim 	Mostafa	    Benzema	    Benzema
+21  176 Brazil    M   160.2   Vinicius  Jose        Junior      Vini
+29  190 Germany   M   235.6	  Antonio   Rudiger     -           Antonio
+21	174	Brazil    M   256.8	  Rodrygo	SilvaDe	    Goes		Rodrygo
+26  182	Spain     M   231.4	  Marco	    Asensio	    Willemsen	Marco
+36	172	Crotia    M   211.1	  Luka	    Modrid	    -	        Modric
+31	175	Belgium   M   199.6	  Eden	    Micheal 	Hazard	    Hazard
+32	183	Germany   M   222.4	  Toni	    Kroos		-	        Kroos
+30	200	Belgium   M   213.5	  Thibuat	Nicolas	    Marc		Courtois
+28	180	Spain	  M	  198.6	  Mariano	Diaz	    Mejia		Mariano
+19	182	Angola    M   217.8	  Eduardo	Celmi	    Camavinga	Camavinga

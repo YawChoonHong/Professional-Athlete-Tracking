@@ -1,0 +1,11 @@
+25	178	France     	  M	  250.6   Masour 	Ousmane	  Dembele	Dembele
+17  176 Spain         M   160.2   Pablo  	Martin    Paez     	Gavi
+29  190 Netherland    M   235.6	  Frenkie   De	      Jong      DeJong
+33	187	France        M   256.8	  Pierre	Emerick	  Emiliano	Aubameyang
+19  174	Spain	      M   231.4	  Pedro	    Gonzalez  Lopez		Pedri
+19	178	Guinea        M   211.1	  Anssumane	Fati	  Vieira	Ansu
+35	194	Spain         M   199.6	  Gerard	Pique 	  Bernabue	Pique
+23	188	Uruguay       M   222.4	  Ronald	Federico  Araujo	Araujo
+26	178	Spain         M   213.5	  Adama	    Traore	  Diarra	Adama
+28	176	Netherland	  M   198.6	  Memphis	Depay	  - 		Memphis
+22	184	Spain         M   217.8	  Ferran	Torres    Garcia	Torres

@@ -258,11 +258,7 @@ int main(){
 
     string teamChoice[2] = {"Team A", "Team B"};
 
-    cout << setw(85) << "Welcome to Professional Athletes Tracking System\n\n" << endl;
-    cout << "Developed by: Section 4 (Group 9)" << endl;
-    cout << "Developers  : 1) LOH WEI HUAN (A21EC0048)"
-        << "\n\t      2) RASIDIN BIN HATTA (A21EC0126)"
-        << "\n\t      3) YAW CHOON HONG (A21EC0240)" << endl << endl;
+    cout << setw(85) << "Welcome to Professional Athletes Tracking System\n\n" << endl << endl;
     
     do{
         do{
